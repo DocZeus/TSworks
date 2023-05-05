@@ -1,0 +1,27 @@
+import time
+import datetime
+import pandas as pd
+
+# ticker ='QCOM'
+period1 =int(time.mktime(datetime.datetime(2022, 5, 4, 23, 59).timetuple()))
+period2 =int(time.mktime(datetime.datetime(2023, 5, 4, 23, 59).timetuple()))
+interval='1wk' # 1d, 1m
+
+from configparser import ConfigParser
+
+config = ConfigParser()
+config.read("config.ini")
+print(config.sections())
+print(config['company_name'])
+my_list=list(config['company_name'].values())
+
+query_string='https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
+for i in my_list: 
+    final_string = query_string.replace("{ticker}", i)
+    print(final_string)
+
+
+# query_string=f'https://query1.finance.yahoo.com/v7/finance/download/{ticker}?period1={period1}&period2={period2}&interval={interval}&events=history&includeAdjustedClose=true'
+df=pd.read_csv(query_string)
+print(df)
+df.to_csv(r'C:\Users\swapn\Python\QCOM.csv')
