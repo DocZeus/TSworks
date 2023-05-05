@@ -2,9 +2,9 @@ import time
 import datetime
 import pandas as pd
 
-# ticker ='QCOM'
-p1 =int(time.mktime(datetime.datetime(2022, 5, 4, 23, 59).timetuple()))
-p2 =int(time.mktime(datetime.datetime(2023, 5, 4, 23, 59).timetuple()))
+ticker ='QCOM'
+p1 =(datetime.datetime(2022, 5, 4, 23, 59).timetuple())
+p2 =(datetime.datetime(2023, 5, 4, 23, 59).timetuple())
 interval='1wk' # 1d, 1m
 
 from configparser import ConfigParser
